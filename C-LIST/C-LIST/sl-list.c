@@ -26,13 +26,10 @@ void list_delete(LIST *list)
 			{
 				tmp = list->first;
 				list->first = list->first->next;
+				free(tmp);
 			}
-			list->first = NULL;
 			free(list->first);
-			free(tmp);
 		}
-	list = NULL;
-	free(list);
 }
 
 void list_insert(LIST *l, int a)
