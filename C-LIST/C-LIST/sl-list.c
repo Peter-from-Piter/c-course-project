@@ -21,12 +21,7 @@ void list_delete(LIST *list)
 			free(list->first);
 		else
 		{
-			struct LIST_ENTRY *tmp = malloc(sizeof(struct LIST_ENTRY));
-			if (NULL == tmp)
-			{
-				printf("ERROR: not enough memory\n");
-				exit(0);
-			}
+			struct LIST_ENTRY *tmp = list->first;
 			while (list->first != NULL)
 			{
 				tmp = list->first;
@@ -59,16 +54,11 @@ void list_remove(LIST *l, int a)
 
 	if (l && l->first != NULL)
 	{
-		struct LIST_ENTRY *tmp = malloc(sizeof(struct LIST_ENTRY));
+		struct LIST_ENTRY *tmp = l->first;
 		struct LIST_ENTRY *current = l->first;
 		
 		while (l->first && l->first->value == a)
 		{
-			if (NULL == tmp)
-			{
-				printf("ERROR: not enough memory\n");
-				exit(0);
-			}
 			tmp = l->first;
 			l->first = l->first->next;
 			current = current->next;
@@ -79,11 +69,6 @@ void list_remove(LIST *l, int a)
 		{
 			if (current->next->value == a)
 			{
-				if (NULL == tmp)
-				{
-					printf("ERROR: not enough memory\n");
-					exit(0);
-				}
 				tmp = current->next;
 				current->next = current->next->next;
 				tmp->next = NULL;
